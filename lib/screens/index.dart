@@ -42,6 +42,7 @@ class _IndexState extends State<Index> {
       child: Scaffold(
         backgroundColor: Colors.black12,
         appBar: AppBar(
+          toolbarHeight: 80,
           backgroundColor: Colors.black,
           automaticallyImplyLeading: false,
           title: GestureDetector(
@@ -49,7 +50,7 @@ class _IndexState extends State<Index> {
               width: 200,
               alignment: Alignment.center,
               child: Text(
-                '<Want_U>',
+                '< Want_U >',
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -61,7 +62,7 @@ class _IndexState extends State<Index> {
                   MaterialPageRoute(builder: ((context) => OpenPage())));
             },
           ),
-          bottom: TabBar(
+          bottom: const TabBar(
             isScrollable: true,
             indicatorWeight: 2,
             indicatorColor: Colors.white,
@@ -70,20 +71,26 @@ class _IndexState extends State<Index> {
                 child: Text(
                   'APPLE',
                   style: TextStyle(
-                      color: Colors.grey, fontWeight: FontWeight.bold),
+                      color: Colors.grey,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20),
                 ),
               ),
               Tab(
                   child: Text(
                 "SAMSUNG",
-                style:
-                    TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
               )),
               Tab(
                   child: Text(
                 "LG",
                 style: TextStyle(
-                    color: Colors.redAccent, fontWeight: FontWeight.bold),
+                    color: Colors.redAccent,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
               )),
             ],
           ),
@@ -147,7 +154,10 @@ class _IndexState extends State<Index> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: ((context) => ContextScreen())));
+                                  builder: ((context) => ContextScreen(
+                                        image: appleImage[index],
+                                        name: index,
+                                      ))));
                         },
                       ),
                     );
@@ -211,7 +221,9 @@ class _IndexState extends State<Index> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: ((context) => ContextScreen())));
+                                  builder: ((context) => ContextScreen(
+                                      image: samsungImage[index],
+                                      name: index))));
                         },
                       ),
                     );
@@ -274,7 +286,8 @@ class _IndexState extends State<Index> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: ((context) => ContextScreen())));
+                                  builder: ((context) => ContextScreen(
+                                      image: lgImage[index], name: index))));
                         },
                       ),
                     );
