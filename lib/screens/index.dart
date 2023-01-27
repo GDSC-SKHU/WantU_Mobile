@@ -1,8 +1,11 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:want_u/screens/context.dart';
 import 'package:want_u/screens/open.dart';
+import 'package:want_u/screens/test.dart';
 
 class Index extends StatefulWidget {
   const Index({super.key});
@@ -16,22 +19,65 @@ class _IndexState extends State<Index> {
     'images/macAir.jpeg',
     'images/macPro13.jpeg',
     'images/macPro14.jpeg',
-    'images/ipadAir.jpeg',
     'images/ipadMini.jpeg',
+    'images/ipadAir.jpeg',
     'images/ipadPro12.jpeg',
   ];
+  List<String> appleProduct = [
+    'M2 Macbook Air',
+    'M2 Macbook Pro13',
+    'M1 Macbook Pro14',
+    'Ipad Mini 6th',
+    'Ipad Air 5th',
+    'Ipad Pro 12.9 6th',
+  ];
+  List<String> appleProductInfo = [
+    'M2 8GB 256GB',
+    'M2 8GB 256GB',
+    'M1 16GB 512GB',
+    'A15 4GB 64GB',
+    'M1 8GB 64GB',
+    'M2 8GB 128GB',
+  ];
+  List<int> productIndex = [0, 4, 8, 12, 16, 20];
   List<String> samsungImage = [
+    'images/galaxyBookPro360.jpeg',
     'images/galaxyBook2.jpeg',
     'images/galaxyBookPro2.jpeg',
-    'images/galaxyBookPro360.jpeg',
     'images/galaxyS8.jpeg',
     'images/galaxyS8plus.jpeg',
     'images/galaxyA8.jpeg',
+  ];
+  List<String> samsungProduct = [
+    'Galaxy Book Pro2 360',
+    'Galaxy Book2',
+    'Galaxy Book Pro2',
+    'Galaxy S8',
+    'Galaxy S8+',
+    'Galaxy A8',
+  ];
+  List<String> samsungProductInfo = [
+    'i7-1260P 16GB 512GB',
+    'i7-1255U 8GB 256GB',
+    'i5-1240p 8GB 256GB',
+    '스냅드래곤8Gen1 8GB 128GB',
+    '스냅드래곤8Gen1  8GB 128GB',
+    'UnisocT618  4GB 64GB',
   ];
   List<String> lgImage = [
     'images/gram14.jpeg',
     'images/gram15.jpeg',
     'images/gram16.jpeg',
+  ];
+  List<String> lgProduct = [
+    'Gram 14',
+    'Gram 15',
+    'Gram 16',
+  ];
+  List<String> lgProductInfo = [
+    'i5-1340p 16g 512gb',
+    'i5-1340p 16g 256gb',
+    'i7-1340p 16g 256gb',
   ];
   @override
   Widget build(BuildContext context) {
@@ -57,10 +103,6 @@ class _IndexState extends State<Index> {
                     fontSize: 30),
               ),
             ),
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: ((context) => OpenPage())));
-            },
           ),
           bottom: const TabBar(
             isScrollable: true,
@@ -106,6 +148,7 @@ class _IndexState extends State<Index> {
                     crossAxisSpacing: 10, //수직 Padding
                   ),
                   itemBuilder: ((context, index) {
+                    int ctg = 2;
                     return Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: GestureDetector(
@@ -142,8 +185,30 @@ class _IndexState extends State<Index> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text('item $index'),
-                                    Text('price $index')
+                                    Text(
+                                      '${appleProduct[index]}',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          '최저가 확인하러가기',
+                                          style: TextStyle(
+                                              fontSize: 12, color: Colors.blue),
+                                        ),
+                                        Icon(
+                                          Icons.exit_to_app,
+                                          size: 15,
+                                          color: Colors.blue,
+                                        )
+                                      ],
+                                    )
                                   ],
                                 ),
                               )
@@ -156,7 +221,10 @@ class _IndexState extends State<Index> {
                               MaterialPageRoute(
                                   builder: ((context) => ContextScreen(
                                         image: appleImage[index],
-                                        name: index,
+                                        name: appleProduct[index],
+                                        info: appleProductInfo[index],
+                                        index: productIndex[index],
+                                        ctg: ctg,
                                       ))));
                         },
                       ),
@@ -172,6 +240,7 @@ class _IndexState extends State<Index> {
                     crossAxisSpacing: 10, //수직 Padding
                   ),
                   itemBuilder: ((context, index) {
+                    int ctg = 1;
                     return Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: GestureDetector(
@@ -209,8 +278,30 @@ class _IndexState extends State<Index> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text('item $index'),
-                                    Text('price $index')
+                                    Text(
+                                      '${samsungProduct[index]}',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          '최저가 확인하러가기',
+                                          style: TextStyle(
+                                              fontSize: 12, color: Colors.blue),
+                                        ),
+                                        Icon(
+                                          Icons.exit_to_app,
+                                          size: 15,
+                                          color: Colors.blue,
+                                        )
+                                      ],
+                                    )
                                   ],
                                 ),
                               )
@@ -222,8 +313,12 @@ class _IndexState extends State<Index> {
                               context,
                               MaterialPageRoute(
                                   builder: ((context) => ContextScreen(
-                                      image: samsungImage[index],
-                                      name: index))));
+                                        image: samsungImage[index],
+                                        name: samsungProduct[index],
+                                        info: samsungProductInfo[index],
+                                        index: productIndex[index],
+                                        ctg: ctg,
+                                      ))));
                         },
                       ),
                     );
@@ -238,6 +333,7 @@ class _IndexState extends State<Index> {
                     crossAxisSpacing: 10, //수직 Padding
                   ),
                   itemBuilder: ((context, index) {
+                    int ctg = 3;
                     return Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: GestureDetector(
@@ -274,8 +370,30 @@ class _IndexState extends State<Index> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text('item $index'),
-                                    Text('price $index')
+                                    Text(
+                                      '${lgProduct[index]}',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          '최저가 확인하러가기',
+                                          style: TextStyle(
+                                              fontSize: 12, color: Colors.blue),
+                                        ),
+                                        Icon(
+                                          Icons.exit_to_app,
+                                          size: 15,
+                                          color: Colors.blue,
+                                        )
+                                      ],
+                                    )
                                   ],
                                 ),
                               )
@@ -287,7 +405,12 @@ class _IndexState extends State<Index> {
                               context,
                               MaterialPageRoute(
                                   builder: ((context) => ContextScreen(
-                                      image: lgImage[index], name: index))));
+                                        image: lgImage[index],
+                                        name: lgProduct[index],
+                                        info: lgProductInfo[index],
+                                        index: productIndex[index],
+                                        ctg: ctg,
+                                      ))));
                         },
                       ),
                     );

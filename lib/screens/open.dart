@@ -16,7 +16,7 @@ class OpenPage extends StatefulWidget {
 class _OpenPageState extends State<OpenPage> {
   @override
   void initState() {
-    Timer(Duration(milliseconds: 2500), () {
+    Timer(Duration(milliseconds: 15000), () {
       Navigator.push(context,
           Transition(child: Index(), transitionEffect: TransitionEffect.FADE));
     });
@@ -37,11 +37,11 @@ class _OpenPageState extends State<OpenPage> {
             children: [
               Container(
                 width: screenWidth * 0.9,
-                height: screenHeight * 0.3,
+                height: screenHeight * 0.4,
                 decoration: BoxDecoration(
                   image: const DecorationImage(
-                    image: AssetImage('images/testLogo.jpeg'),
-                  ),
+                      image: AssetImage('images/testLogo.jpeg'),
+                      fit: BoxFit.fitWidth),
                 ),
               ),
               Container(
@@ -50,23 +50,35 @@ class _OpenPageState extends State<OpenPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: const [
-                    Text(
-                      '신학기 프로모션',
-                      style: TextStyle(
-                          fontSize: 30,
-                          color: Colors.blueAccent,
-                          fontWeight: FontWeight.bold),
+                    SizedBox(
+                      height: 20,
                     ),
-                    Text('가격비교 해드립니다',
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        '신학기 프로모션',
                         style: TextStyle(
-                            fontSize: 26,
-                            color: Colors.lightBlue,
-                            fontWeight: FontWeight.bold)),
-                    Text('<Want_U>',
-                        style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 30,
                             color: Colors.blueAccent,
-                            fontWeight: FontWeight.bold))
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text('가격비교 해드립니다',
+                          style: TextStyle(
+                              fontSize: 26,
+                              color: Colors.lightBlue,
+                              fontWeight: FontWeight.bold)),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text('<Want_U>',
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.blueAccent,
+                              fontWeight: FontWeight.bold)),
+                    )
                   ],
                 ),
               )
