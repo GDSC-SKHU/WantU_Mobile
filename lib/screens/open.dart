@@ -16,7 +16,7 @@ class OpenPage extends StatefulWidget {
 class _OpenPageState extends State<OpenPage> {
   @override
   void initState() {
-    Timer(Duration(milliseconds: 1500), () {
+    Timer(Duration(milliseconds: 2500), () {
       Navigator.push(context,
           Transition(child: Index(), transitionEffect: TransitionEffect.FADE));
     });
@@ -27,7 +27,7 @@ class _OpenPageState extends State<OpenPage> {
     var screenWidth = MediaQuery.of(context).size.width;
     var screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.black,
       body: SafeArea(
         child: Container(
           width: screenWidth,
@@ -40,7 +40,7 @@ class _OpenPageState extends State<OpenPage> {
                 height: screenHeight * 0.3,
                 decoration: BoxDecoration(
                   image: const DecorationImage(
-                    image: AssetImage('images/testLogo2.png'),
+                    image: AssetImage('images/testLogo.jpeg'),
                   ),
                 ),
               ),
